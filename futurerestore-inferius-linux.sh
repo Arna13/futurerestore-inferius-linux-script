@@ -33,7 +33,7 @@ function getAPTDeps () {
     sed -i 's/deb\.debian\.org/ftp.de.debian.org/g' /etc/apt/sources.list
     apt-get -qq update
     apt-get -yqq dist-upgrade
-    apt-get install --no-install-recommends -yqq curl gnupg2 lsb-release wget software-properties-common build-essential git autoconf automake libtool-bin pkg-config cmake zlib1g-dev libminizip-dev libpng-dev libreadline-dev libbz2-dev libudev-dev libudev1 python3-dev
+    apt-get install --no-install-recommends -yqq curl gnupg2 lsb-release wget software-properties-common build-essential git autoconf automake libtool-bin pkg-config cmake zlib1g-dev libminizip-dev libpng-dev libreadline-dev libbz2-dev libudev-dev libudev1 python3-dev libplist-dev usbmuxd
     cp -LRP /usr/bin/ld ~/
     rm -rf /usr/bin/ld /usr/lib/x86_64-linux-gnu/lib{usb-1.0,png*}.so*
     curl -sO https://apt.llvm.org/llvm.sh
@@ -214,7 +214,7 @@ function build () {
     cd ${FR_BASE}/libplist
     ./autogen.sh ${CONF_ARGS} ${CC_ARGS} CFLAGS="${C_ARGS}" LDFLAGS="${LD_ARGS}" PKG_CONFIG_PATH="${PKG_CFG}"
     make ${JNUM} ${LNUM} install
-    rm -rf /tmp/out/lib/libplist*.la
+    #rm -rf /tmp/out/lib/libplist*.la
     echo "Building libimobiledevice-glue..."
     #libimobiledevice-glue
     cd ${FR_BASE}/libimobiledevice-glue
